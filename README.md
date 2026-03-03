@@ -1,10 +1,8 @@
-Installing OpenVAS (which is now officially known as **Greenbone Vulnerability Management** or **GVM**) on Debian 13 (Trixie) can be done in a couple of ways.
+Installing OpenVAS (which is now officially known as **Greenbone Vulnerability Management** or **GVM**) on Debian 13 (Trixie)
 
-Because GVM is a complex framework with many interconnected components (PostgreSQL, Redis, web interfaces, scanners), **Greenbone officially recommends using Docker**. It isolates the environment and saves you from a lot of dependency and update headaches. However, if you prefer a bare-metal installation, Debian 13 does include the GVM packages directly in its repositories.
+Because GVM is a complex framework with many interconnected components (PostgreSQL, Redis, web interfaces, scanners), **Greenbone officially recommends using Docker**. It isolates the environment and saves you from a lot of dependency and update headaches.
 
-Here is how to do both.
-
-### Method 1: The Docker Route (Highly Recommended)
+### The Docker Route
 
 This is the cleanest and most stable way to run GVM, as Greenbone maintains the containers directly.
 
@@ -26,7 +24,7 @@ Create a directory for your GVM deployment and download the official compose fil
 
 ```bash
 mkdir -p ~/greenbone-community-container && cd ~/greenbone-community-container
-curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
+curl -f -L https://greenbone.github.io/docs/latest/_static/compose.yaml -o docker-compose.yml
 
 ```
 
@@ -34,15 +32,15 @@ curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.y
 Pull the latest container images and spin up the environment in the background:
 
 ```bash
-docker compose -f docker-compose.yml -p greenbone-community-edition pull
-docker compose -f docker-compose.yml -p greenbone-community-edition up -d
+sudo docker compose -f docker-compose.yml -p greenbone-community-edition pull
+sudo docker compose -f docker-compose.yml -p greenbone-community-edition up -d
 
 ```
 
 The initial sync of vulnerability data (NVTs, CERT, SCAP data) will happen automatically but takes a while. You can monitor the sync progress by checking the logs:
 
 ```bash
-docker compose -f docker-compose.yml -p greenbone-community-edition logs -f
+sudo docker compose -f docker-compose.yml -p greenbone-community-edition logs -f
 
 ```
 
