@@ -11,7 +11,7 @@ Make sure your system is up to date and has Docker installed:
 
 ```bash
 sudo apt update && sudo apt upgrade -y
-sudo apt install docker.io docker-compose-v2 curl -y
+sudo apt install docker.io docker-compose curl -y
 sudo systemctl enable --now docker
 sudo usermod -aG docker $USER
 
